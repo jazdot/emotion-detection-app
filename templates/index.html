@@ -1,39 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Emotion Detection</title>
-    <script>
-        function RunSentimentAnalysis() {
-            // Get the text from the input box
-            let textToAnalyze = document.getElementById("textToAnalyze").value;
-
-            // Call the Flask endpoint
-            let xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    // Display the response from server.py
-                    document.getElementById("system_response").innerHTML = xhttp.responseText;
-                }
-            };
-            xhttp.open("GET", "/emotionDetector?textToAnalyze=" + encodeURIComponent(textToAnalyze), true);
-            xhttp.send();
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="./static/mywebscript.js"></script>
+    <style>
+        .center-heading {
+            text-align: center;
         }
-    </script>
+    </style>
 </head>
-<body style="font-family: Arial, sans-serif; text-align: center; margin-top: 50px;">
-    <h2>Emotion Detection Analyzer</h2>
-    <p>Enter a statement below to analyze its emotional tone:</p>
-    
-    <textarea id="textToAnalyze" rows="4" cols="50" placeholder="Type your sentence here..."></textarea>
-    <br><br>
-    
-    <button onclick="RunSentimentAnalysis()" style="padding: 10px 20px; font-size: 16px; cursor: pointer;">
-        Analyze Emotion
-    </button>
-    <br><br>
-    
-    <div id="system_response" style="font-weight: bold; color: #333; max-width: 600px; margin: 0 auto;"></div>
+<body>
+    <div class="card">
+        <div class="card-body">
+            <h1 class="center-heading">NLP - Emotion Detection</h1> 
+            <div style="padding: 25px 25px 25px 25px;">
+            <h2 class="mb-3">
+                <label class="form-label">Please enter the text to be analyzed</label>
+                <input type="textarea" class="form-control" id="textToAnalyze">
+            </h2>
+
+            <div style="padding: 25px 25px 25px 25px;">
+                <button onclick="RunSentimentAnalysis()" class="btn btn-secondary">Run Sentiment Analysis</button>
+            </div>
+            <div style="padding: 25px 25px 25px 25px;"></div>
+            <h2 class="mb-3">
+                <label class="form-label">Result of Emotion Detection</label>
+            </h2>
+
+            <div id="system_response" style="padding: 25px 25px 25px 25px;"></div>
+        </div>
+    </div>
 </body>
-</html>
